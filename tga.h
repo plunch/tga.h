@@ -86,8 +86,7 @@ typedef struct {
 	uint8_t* image_data;
 } targa_file;
 
-targa_header* extract_targa_header ( void* file_start );
-targa_file* load_targa_file ( const char* filename );
-int write_targa_file ( targa_file*, int fd);
+targa_file* tga_readfile ( int fd );
+int tga_writefile ( targa_file*, int fd);
 
 #endif /* TGA_TARGA_H */
