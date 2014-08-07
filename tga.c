@@ -189,23 +189,24 @@ int tga_writefile ( targa_file* f, int fd )
 	if ( write ( fd, header, TGA_HEADER_LEN ) == -1 ) {
 		int res = errno;
 		free ( header );
-		return res;
+		errno = res;
+		return -1;
 	}
 	free ( header );
 	/* Write image identification field */
 	if ( write ( fd, f->image_identification_field, idlen ) == -1 ) {
-		return errno;
+		return -1;
 	}
 	/* Write color map data */
 	if ( cmlen > 0 ) {
 		if ( write ( fd, f->color_map_data, cmlen ) == -1 ) {
-			return errno;
+			return -1;
 		}
 	}
 	/* Write image data */
 	if ( img_len > 0 ) {
 		if ( write ( fd, f->image_data, img_len ) == -1 ) {
-			return errno;
+			return -1;
 		}
 	}
 
