@@ -1,4 +1,4 @@
-A small, simple loader of targa images.
+A small, simple loader of targa images, licensed under the MIT license.
 The goal is to create a tiny helper, which can be guaranteed to be bug-free.
 
 Current issues/gotchas:
