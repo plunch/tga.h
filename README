@@ -1,0 +1,16 @@
+A small, simple loader of targa images.
+The goal is to create a tiny helper, which can be guaranteed to be bug-free.
+
+Current issues/gotchas:
+ * Image data, image identification field and color map data WILL be in little-endian order on load
+   regardless of the host endianness. The header is converted to host-endian.
+ * ALL saved data WILL be in host-endian, instead of little-endian as according to tga spec
+ * No decoding of RLE is performed, to keep implementation simple.
+ * No targa-extensions etc is supported.
+
+TODO: 
+ * Fix endianness of saved image buffers (?)
+ * Fix endianness of saved headers.
+ * Compile & test on non-x86(_64) + gcc + linux
+ * Shared lib/statically linked lib (? Might not be worth the hassle)
+

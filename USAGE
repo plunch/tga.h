@@ -1,0 +1,28 @@
+targa_file* tga_readfile ( int fd );
+
+	Reads a file from the file descriptor fd,
+	starting at the current offset of fd.
+	Returns NULL on failure, for more info, check errno:
+		EINVAL
+			The file does not contain a tga-header
+		EADDRNOTAVAIL
+			Invalid sized specified in header.
+	Values will also be set as returned by read or malloc.
+	The returned struct will be allocated on the heap and
+	must be passed on to free when done
+
+int tga_writefile ( targa_file* f, int fd);
+
+	Writes a file to the file descriptor fd.
+	Returns 0 on success, and -1 on failure.
+	For additional info, check errno. errno will be set
+	as according to return values of write.
+
+	No image validation is performed, so the resulting
+	file may or may not be read correctly by other 
+	applications.
+
+The meaning of fields is specified in comments in the header,
+including definitions of the supported image types.
+Refer to the TARGA specification for additional information.
+
