@@ -4,7 +4,7 @@ The goal is to create a tiny helper, which can be guaranteed to be bug-free.
 Current issues/gotchas:
  * Image data, image identification field and color map data WILL be in little-endian order on load
    regardless of the host endianness. The header is converted to host-endian.
- * ALL saved data WILL be in host-endian, instead of little-endian as according to tga spec
+ * ALL saved data WILL be in host-endian, instead of little-endian (which is what the spec says)
  * No decoding of RLE is performed, to keep implementation simple.
  * No targa-extensions etc is supported.
 
