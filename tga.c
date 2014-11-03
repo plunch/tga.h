@@ -234,3 +234,35 @@ int tga_writefile ( targa_file* f, int fd )
 
 	return 0;
 }
+
+size_t tga_undo_rle( targa_file* from, uint8_t** output_buffer )
+{
+	size_t output_len = 0;
+
+	targa_header* fh = &(from->head);
+	size_t b = 0;
+	uint8_t header = 0;
+	size_t img_data_len = fh->width * fh->height * depth2bytes(fh->depth);
+
+	while(b < img_data_len){
+		header = from->image_data[b++];
+		size_t len = ((header &!UINT8_MAX) + 1) * depth2bytes(fh->depth);
+		output_len += len;
+		*output_buffer = (uint8_t*)realloc(*output_buffer,
+				sizeof(uint8_t) * output_len);
+
+		/* Check if the high-order bit is 1 or 0 */
+		if(header & UINT8_MAX > 0){
+			uint8_t val = from->image_data[b++];
+			while (len > 0) {
+				*output_buffer[output_len - (len--)] = val;
+			}
+		} else {
+			while(len > 0) {
+				*output_buffer[output_len - (len--)] = from->image_data[b++];
+			}
+		}
+	}
+
+	return output_len;
+}
