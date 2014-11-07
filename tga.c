@@ -142,7 +142,7 @@ targa_file* tga_readfile ( int f_desc )
 
 	char* file_data = ( char* ) malloc ( alleged_length - TGA_HEADER_LEN );
 	
-	ssize_t read_result = read ( f_desc, file_data, alleged_length - TGA_HEADER_LEN );
+	ssize_t read_result = 0;
 	do {
 		read_result = read ( f_desc, file_data, alleged_length - TGA_HEADER_LEN );
 		if(read_result == -1){
