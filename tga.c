@@ -252,7 +252,7 @@ size_t tga_undo_rle( targa_file* from, uint8_t** output_buffer )
 				sizeof(uint8_t) * output_len);
 
 		/* Check if the high-order bit is 1 or 0 */
-		if(header & UINT8_MAX > 0){
+		if((header & UINT8_MAX) > 0){
 			uint8_t val = from->image_data[b++];
 			while (len > 0) {
 				*output_buffer[output_len - (len--)] = val;
