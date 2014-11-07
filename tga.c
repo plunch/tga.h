@@ -53,7 +53,7 @@ uint8_t depth2bytes ( uint8_t d )
 
 targa_header* extract_targa_header ( void* file_buf )
 {
-	char* file_start = ( char* ) file_buf;
+	unsigned char* file_start = ( unsigned char* ) file_buf;
 	targa_header* h = ( targa_header* ) calloc ( 1, sizeof ( targa_header ) );
 
 	h->id_length 		= file_start[0];
