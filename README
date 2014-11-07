@@ -4,9 +4,10 @@ The goal is to create a tiny helper, which can be guaranteed to be bug-free.
 Current issues/gotchas:
  * Image data, image identification field and color map data WILL be in little-endian order on load
    regardless of the host endianness. The header is converted to host-endian.
- * ALL saved data WILL be in host-endian, instead of little-endian (which is what the spec says)
+ * ALL saved data WILL be in host-endian, instead of little-endian
  * No decoding of RLE is performed, to keep implementation simple.
- * No targa-extensions etc is supported.
+ * No targa-extensions etc is supported. 
+ * Only reads raw image data, color mapping would have to be performed by the caller.
 
 TODO: 
  * Fix endianness of saved image buffers (?)
