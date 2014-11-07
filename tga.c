@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-#define _BSD_SOURCE
+#define _DEFAULT_SOURCE
 #include "tga.h"
 
 #include <stdlib.h>
