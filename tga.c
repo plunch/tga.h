@@ -160,7 +160,7 @@ targa_file* tga_readfile ( int f_desc )
 
 	/* We did not get the whole file, something is wrong. */
 	/* Exit with error instead of risking a memory error */
-	if(read_result != alleged_length - TGA_HEADER_LEN){
+	if((size_t)read_result != alleged_length - TGA_HEADER_LEN){
 		free(file_data);
 		errno = EADDRNOTAVAIL;
 		return NULL;
