@@ -25,6 +25,7 @@ THE SOFTWARE.
 #define TGA_TARGA_H
 
 #include <inttypes.h>
+#include <stdlib.h>
 
 #define TGA_HEADER_LEN 18
 
@@ -111,5 +112,7 @@ typedef struct {
 
 targa_file* tga_readfile ( int fd );
 int tga_writefile ( targa_file*, int fd);
+
+size_t tga_get_image_buffer_length ( targa_file* );
 
 #endif /* TGA_TARGA_H */

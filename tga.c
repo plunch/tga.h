@@ -29,7 +29,12 @@ THE SOFTWARE.
 #include <unistd.h>
 #include <errno.h>
 
-#define lendian2host16(x, o) (x[o]<<0)|(x[o + 1]<<8)
+#define lendian2host16(x, o) ((uint16_t)((x[o]<<0)|(x[o + 1]<<8)))
+
+uint8_t depth2bytes ( uint8_t d );
+targa_header* extract_targa_header ( void* file_buf );
+uint8_t* serialize_targa_header ( const targa_header* h );
+size_t tga_undo_rle( targa_file* from, uint8_t** output_buffer );
 
 uint8_t depth2bytes ( uint8_t d )
 {
@@ -49,6 +54,11 @@ uint8_t depth2bytes ( uint8_t d )
 		break;
 	}
 	return bpp;
+}
+
+size_t tga_get_image_buffer_length ( targa_file* f )
+{
+	return f->head.width * f->head.height * depth2bytes(f->head.depth);
 }
 
 targa_header* extract_targa_header ( void* file_buf )
